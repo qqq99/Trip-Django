@@ -1,32 +1,30 @@
 {% extends "base.html" %} 
-<!DOCTYPE html>
-
+{% load static %}
 {% block content %}
 
 <div class='container'>
-<div class="jumbotron">
-  <h5 class="display-4">Welcome to our corporate travel management platform!</h5>
-  <p class="lead">Get to know amazing features to reduce your travel cost, manage risk ,track location and many more.</p>
-  <hr class="my-4">
-  <p> Fast, Efficient, Secure! </p>
-  <a class="btn btn-primary btn-sm" id='One' href="#" role="button">Learn more about Trip Approve</a>
-  <div class="box fourteen-nine">
-
+    <div class="jumbotron">
+        <h5 class="display-4">Welcome to our corporate travel management platform!</h5>
+        <p class="lead">Get to know amazing features to reduce your travel cost, manage risk ,track location and many more.</p>
+        <hr class="my-4">
+        <p> Fast, Efficient, Secure! </p>
+        <a class="btn btn-primary btn-sm" id='One' href="#" role="button">Learn more about Trip Approve</a>
+        <div class="box fourteen-nine">
+    </div>
 </div>
-</div>
 
-  <div class='container'
-  <p></p>
-  <p></p>
-	  <h4>follow us
+
+    <div class='container'>
+        <video src="{% static 'Trip.mp4' %}" autoPlay="true" muted></video>
+    </div>
+
+
+	<h4>follow us
     <h4>on Youtube*</h4>
     <h4>id: Trip Approve</h4>
   <p> </p>
   <a href="https://youtube.com"><button id='Linkedin' type="button" class="btn btn-info" >Youtube</button></a>
   </div>
   
-</form>
 
 {% endblock %}
-</body>
-</html>
