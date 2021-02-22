@@ -129,3 +129,9 @@ MEDIA_URL = 'media/'
 
 LOGIN_REDIRECT_URL = 'test'
 LOGOUT_REDIRECT_URL = 'thanks'
+
+ALLOWED_HOSTS = [
+   '*',
+   'https://tranquil-fjord-35779.herokuapp.com/',
+   '127.0.0.1',
+]
