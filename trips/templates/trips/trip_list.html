@@ -1,0 +1,38 @@
+{% extends "trips/trip_base.html" %} 
+{% block pre_trip_content %}
+<div class="col-md-4">
+  {% if request.user.is_authenticated %}
+  <div class="card card-with-shadow">
+    <div class="content">
+      <h5 class="title">Your Teams</h5>
+      <ul class="list-unstyled">
+        {% for member_team in get_user_teams %}
+        <li class="team li-with-bullet">
+          <a href="{% url 'teams:single' slug=member_team.team.slug %}"
+            >{{ member_team.team.name }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  <div class="card card-with-shadow">
+    <div class="content">
+      <h5 class="title">All teams</h5>
+      <ul class="list-unstyled">
+        {% for other_team in get_other_teams %}
+        <li class="team li-with-bullet">
+          <a href="{% url 'teams:single' slug=other_team.slug %}"
+            >{{ other_team.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block trip_content %}
+<div class="col-md-8">
+  {% for trip in trip_list %} {% include "trips/_trip.html" %} {% endfor %}
+</div>
+{% endblock %}

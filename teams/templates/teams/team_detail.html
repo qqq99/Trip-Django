@@ -1,0 +1,88 @@
+{% extends "teams/team_base.html" %}
+
+{% block preteam %}
+<table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Team Leader</th>
+          <th>Total Member</th>
+          <th>Team Members</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+              {{team.name}}
+          </td>
+          <td>{{team.team_leader}}</td>
+          <td>{{team.members.count}}</td>
+          <td>
+          {% for member in team.members.all %}
+          <li>{{ member }}</li>
+           {% endfor %}
+          </td>
+        </tr>
+     
+      </tbody>
+    </table>
+
+{% endblock %}
+
+
+{% block team_content %}
+
+<div class="col-md-8">
+	{% if team.trips.count == 0 %}
+	<h2>No trip activity created in this team yet!</h2>
+
+	{% else %}
+
+		{% for trip in team.trips.all %}
+      <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Location</th>
+          <th>Category</th>
+          <th>Number</th>
+          <th>Cost</th>
+          <th>Reason</th>
+          <th>initiator</th>
+          <th>created_at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td><a href="{% url 'teams:single' slug=trip.team.slug %}">{{ trip.team.name }}</a></td>
+          <td>
+            {{trip.location}}
+          </td>
+          <td>{{trip.category}}</td>
+          <td>{{trip.number}}</td>
+          <td>{{trip.cost}}</td>
+          <td>{{trip.reason_html|safe }}</td>
+          <td><span class="username"
+        ><a href="{% url 'trips:for_user' username=trip.user.username %}"
+          >@{{ trip.user.username }}</a
+        ></span
+      ></td>
+          <td>{{ trip.created_at }}</td>
+        </tr>
+    
+      </tbody>
+    </table>
+			
+		{% endfor %}
+
+	{% endif %}
+</div>
+ <div class="content">
+				{% if user in team.members.all %}
+					<a href="{% url 'teams:leave' slug=team.slug %}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-remove-circle"></span> Leave</a>
+				{% else %}
+					<a href="{% url 'teams:join' slug=team.slug %}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> Join</a>
+				{% endif %}
+</div>
+{% endblock %}

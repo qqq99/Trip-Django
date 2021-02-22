@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+<div class="trips-page">
+  <div class="container">
+    <div class="row">
+      {% block pretrip %}{% endblock %} {% block trip_content %}{% endblock %}
+      {% block trip_trip %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

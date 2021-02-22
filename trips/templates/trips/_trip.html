@@ -1,0 +1,52 @@
+<div class="trip media">
+      
+      <dl>
+      <h5><dt>Location</dt></h5>
+      <dd><h6>{{trip.location}}</h6></dd>
+      <h5><dt>Category</dt></h5>
+      <dd><h6>{{trip.category}}</h6></dd>
+      <h5><dt>Number</dt></h5>
+      <dd><h6>{{trip.number}}</h6></dd>
+      <h5><dt>Cost</dt></h5>
+      <dd><h6>{{trip.cost}}</h6></dd>
+      <h5><dt>Receipt</dt></h5>
+      <dd><h6>{{trip.receipt}}</h6></dd>
+      <h5><dt>Reason</dt></h5>
+      <dd><h5>{{trip.reason_html|safe }}</h5></dd>
+    </dl>
+  
+  <div class="media-body">
+    <h6 class="media-heading">
+      <span class="username"
+        ><a href="{% url 'trips:for_user' username=trip.user.username %}"
+          >@{{ trip.user.username }}</a
+        > created at:</span
+      >
+      <time class="time">
+      <a
+          href="{% url 'trips:single' username=trip.user.username pk=trip.pk %}"
+          >{{ trip.created_at }}</a
+        >
+     </time>
+      {% if trip.team %}
+      <span class="team-name">in <a href="{% url 'teams:single' slug=trip.team.slug %}">{{ trip.team.name }}</a></span>
+      {% endif %}
+    </h6>
+
+    <div class="media-footer">
+      {% if user.is_authenticated and trip.user == user and not hide_delete %}
+      <a
+        href="{% url 'trips:delete' pk=trip.pk %}"
+        title="delete"
+        class="btn btn-simple"
+      >
+        <span
+          class="glyphicon glyphicon-remove text-danger"
+          aria-hidden="true"
+        ></span>
+        <span class="text-danger icon-label">Delete</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

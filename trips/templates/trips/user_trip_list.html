@@ -1,0 +1,12 @@
+{% extends "trips/trip_base.html" %} 
+{% block pretrip %}
+<div class="col-md-4">
+  <h1>@{{ trip_user.username }}</h1>
+  <p>All your trips >>> </p>
+</div>
+{% endblock %} 
+{% block trip_content %}
+<div class="col-md-8">
+  {% for trip in trip_list %} {% include "trips/_trip.html" %} {% endfor %}
+</div>
+{% endblock %}

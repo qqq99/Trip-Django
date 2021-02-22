@@ -1,0 +1,57 @@
+{% extends "teams/team_base.html" %} 
+{% block preteam %}
+<div class="col-md-4">
+  <div class="content">
+    {% if user.is_authenticated %}
+    <h2>
+      Welcome <a href="{% url 'trips:for_user' username=user.username %}"
+        >{{user.username }} </a> 
+    </h2>
+    <h2>  >>> </h2>
+
+    {% endif %}
+    
+
+</div>
+  {% if user.is_authenticated %}
+  <a href="{% url 'teams:create' %}" class="btn btn-md btn-fill btn-warning"
+    ><span class="glyphicon glyphicon-plus-sign"></span> Create New Travel Team!</a
+  >
+  <a href="{% url 'trips:for_user' user.username %}" class="btn btn-md btn-fill btn-warning">My Trips</a>
+  
+  {% endif %}
+</div>
+{% endblock %} 
+
+{% block team_content %}
+<div class="col-md-8">
+  <div class="list-team">
+  
+    {% for team in object_list %}
+    <a class="list-team-item" href="{% url 'teams:single' slug=team.slug %}">
+      <h3 class="title list-team-item-heading">{{ team.name }}</h3>
+      <h4 class="title list-team-item-heading">{{ team.team_leader }}</h4>
+      <div class="list-team-item-text container-fluid">
+        
+        <div class="row">
+          <div class="col-md-4">
+            <span class="badge">
+              {% for member in team.members.all %}
+              <li>{{ member }}</li>
+              {% endfor %}
+            </span> 
+          </div>
+          <div class="col-md-4">
+            <span class="badge">Activities: {% for trip in team.trips.all %}
+              <li>{{ trip }}</li>
+              {% endfor %}</span> 
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,12 @@
+{% extends "trips/trip_base.html" %}
+{% load bootstrap3 %} 
+{% block trip_content %}
+{% comment %} {% if trip.user in team.members.all %} {% endcomment %}
+<h4>Create New Trip</h4>
+<br>
+<form method="POST" action="{% url 'trips:create' %}" id="tripForm">
+  {% csrf_token %} {% bootstrap_form form %}
+  <input type="submit" value="Trip" class="btn btn-primary btn-large" />
+</form>
+
+{% endblock %}
